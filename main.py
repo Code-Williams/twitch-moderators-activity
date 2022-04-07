@@ -13,6 +13,9 @@ while True:
     # Update last check file with new moderators and remove leaved moderators
     update_mods = functions.update_mods(moderators)
 
+    # Write log into a file called log.txt (Also you can change it)
+    write_file_log = functions.write_file_log(update_mods)
+
     # Send log to Discord for both new moderators and leaved moderators
     sned_log = functions.send_log(update_mods)
 

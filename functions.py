@@ -1,4 +1,5 @@
 import config
+from datetime import datetime
 from discord_webhook import DiscordEmbed, DiscordWebhook
 
 ### In the twitch chat we have bots who have moderator permission and so we dont want to know which bot is in the chat we just want users
@@ -69,3 +70,17 @@ def send_log(updated_mods):
         return True
     except:
         return False
+
+def write_file_log(updated_mods):
+    new_mods = updated_mods[0]
+    leaved_mods = updated_mods[1]
+
+    log_file = open("log.txt", "a")
+    now = datetime.now()
+    strftime = now.strftime("%Y-%m-%d %H:%M:%S")
+
+    for moderator in new_mods:
+        log_file.write(f"[ { strftime } ] {moderator} - joined to chat\n")
+
+    for moderator in leaved_mods:
+        log_file.write(f"[ { strftime } ] {moderator} - leaved from chat\n")
